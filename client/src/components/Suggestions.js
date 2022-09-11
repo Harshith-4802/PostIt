@@ -10,10 +10,13 @@ const Suggestions = () => {
 		const res = await axios.get("/api/users");
 		const u = res.data.map((user) => {
 			return (
-				<div key={user.username} className='border rounded-3 mx-4 mb-1 row p-2'>
+				<div
+					key={user.username}
+					className='border rounded-3 mx-1 p-2 mb-1 row '
+				>
 					<div className='col-2'>
 						<img
-							style={{ width: "3rem", height: "3rem", borderRadius: "50%" }}
+							style={{ width: "2.5rem", height: "2.5rem", borderRadius: "50%" }}
 							src={user.profile_pic_url}
 							className='img-responsive'
 							alt='dummydp'

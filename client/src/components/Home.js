@@ -51,7 +51,7 @@ const Home = () => {
 			<div className='row justify-content-center m-0 p-0'>
 				<div className='col-md-7 mt-4'>{posts}</div>
 				<div className='container col-md-4 my-3 mx-2 px-2'>
-					<div className='text-center fs-3 my-3'>Suggestions</div>
+					<div className='text-center my-3'>Suggestions</div>
 					<Suggestions />
 				</div>
 			</div>

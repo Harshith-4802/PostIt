@@ -64,7 +64,7 @@ const Post = (props) => {
 				>
 					Unfollow
 				</button> */}
-				<div className='col-4 fs-5'>
+				<div className='col-sm-4 py-1 col-5 fs-5'>
 					<FollowButton
 						username={props.user.username}
 						followId={followId}
@@ -78,8 +78,8 @@ const Post = (props) => {
 				alt='dummy'
 			/>
 			<div className='text-top card-body py-0 row justify-content-between'>
-				<p className='card-text col-10 pt-3'>{props.desc}</p>
-				<div id={heartId} className='heart col-2 m-2' onClick={playHeart}></div>
+				<p className='card-text col-9 pt-3 px-0'>{props.desc}</p>
+				<div id={heartId} className='heart col-3' onClick={playHeart}></div>
 			</div>
 		</div>
 	);

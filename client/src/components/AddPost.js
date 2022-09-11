@@ -73,7 +73,7 @@ const AddPost = () => {
 					encType='multipart/form-data'
 					onSubmit={handleSubmit}
 					method='POST'
-					className='shadow p-4 bg-body col-6 border rounded-4 my-auto'
+					className='shadow p-4 bg-body col-md-6 border rounded-4 my-auto'
 				>
 					<h1 className='display-3 text-center'>Add a New Post</h1>
 					<div className='mb-3'>
@@ -112,7 +112,7 @@ const AddPost = () => {
 						</button>
 					</div>
 				</form>
-				<div className='col-5'>
+				<div className='col-md-6'>
 					<h3 className='display-6 text-center'>Preview</h3>
 					<Post user={user} desc={desc} img_url={imageUrl} />
 				</div>
