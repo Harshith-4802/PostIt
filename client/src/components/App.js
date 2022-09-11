@@ -10,7 +10,7 @@ export default () => {
 		<div>
 			<BrowserRouter>
 				<div>
-					<Route path='/' component={() => <Redirect to='/home' />} />
+					<Route path='/' exact component={() => <Redirect to='/home' />} />
 					<Route path='/home' component={() => <Home />} />
 					<Route path='/sign-up' component={() => <SignUp />} />
 					<Route path='/login' component={() => <Login />} />

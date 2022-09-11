@@ -16,7 +16,7 @@ const FollowButton = (props) => {
 
 	const follow = async () => {
 		const followButtons = document.getElementsByClassName(props.followId);
-		if (followButtons[0].innerHTML === "Followed") {
+		if (followButtons[0].innerHTML === "Unfollow") {
 			unfollow();
 			return;
 		}
@@ -24,7 +24,7 @@ const FollowButton = (props) => {
 			friendUserName: props.username,
 		});
 		for (let b of followButtons) {
-			b.innerHTML = "Followed";
+			b.innerHTML = "Unfollow";
 			b.classList.add("followed");
 		}
 	};
@@ -34,7 +34,7 @@ const FollowButton = (props) => {
 			onClick={follow}
 			data-bs-toggle='button'
 			className={`border-0 rounded-1 draw-border p-1 followed ${props.followId}`}
-			style={{ height: "90%", width: "90%" }}
+			style={{ backgroundColor: "FDEFF4", height: "90%", width: "90%" }}
 		>
 			{props.text}
 		</button>

@@ -121,7 +121,7 @@ app.post("/api/add-post", upload.single("image"), async (req, res) => {
 	res.send({ loggedIn: true, message: "Post added successfully" });
 });
 
-app.get("/api/add-post", async (req, res) => {
+app.get("/api/check-login", async (req, res) => {
 	if (!req.session.username) {
 		res.send({ loggedIn: false });
 	} else {
@@ -133,10 +133,6 @@ app.get("/api/add-post", async (req, res) => {
 
 app.get("/api/home", async (req, res) => {
 	const username = req.session.username;
-	if (!username) {
-		res.send({ loggedIn: false });
-		return;
-	}
 
 	////To get all the posts irrespective of username
 	// const posts = await PostModel.find({}).populate("user");
@@ -153,7 +149,7 @@ app.get("/api/home", async (req, res) => {
 	// user.friends.forEach((friend) => {
 	// 	posts.push({userposts: (friend.posts)});
 	// });
-	res.send({ loggedIn: true, friends: user.friends });
+	res.send({ friends: user.friends });
 });
 
 app.post("/api/logout", (req, res) => {

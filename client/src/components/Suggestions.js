@@ -10,7 +10,7 @@ const Suggestions = () => {
 		const res = await axios.get("/api/users");
 		const u = res.data.map((user) => {
 			return (
-				<div className='border rounded-3 container row p-2'>
+				<div key={user.username} className='border rounded-3 mx-4 mb-1 row p-2'>
 					<div className='col-2'>
 						<img
 							style={{ width: "3rem", height: "3rem", borderRadius: "50%" }}
@@ -32,14 +32,9 @@ const Suggestions = () => {
 		});
 		console.log(u);
 		setUsers(u);
-		// console.log(users);
 	};
 	getUsers();
-	return (
-		<div>
-			<ul className='list-group'>{users}</ul>
-		</div>
-	);
+	return <div>{users}</div>;
 };
 
 export default Suggestions;

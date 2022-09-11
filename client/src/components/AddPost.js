@@ -3,6 +3,7 @@ import axios from "axios";
 import Post from "./Post";
 import { useHistory } from "react-router-dom";
 import Navbar from "./Navbar";
+import Loader from "./Loader";
 
 const AddPost = () => {
 	const history = useHistory();
@@ -22,7 +23,7 @@ const AddPost = () => {
 		return () => URL.revokeObjectURL(getImageUrl);
 	}, [selectedImg]);
 	if (!user) {
-		axios.get("/api/add-post").then((res) => {
+		axios.get("/api/check-login").then((res) => {
 			console.log(res);
 			if (!res.data.loggedIn) {
 				history.push("/login");
@@ -30,27 +31,7 @@ const AddPost = () => {
 				setUser(res.data.user);
 			}
 		});
-		return (
-			<div
-				className='spinner-border'
-				role='status'
-				style={{
-					width: "10rem",
-					height: "10rem",
-					position: "absolute",
-					textAlign: "center",
-					verticalAlign: "middle",
-					lineHeight: "30rem",
-					top: "0",
-					bottom: "0",
-					left: "0",
-					right: "0",
-					margin: "auto",
-				}}
-			>
-				<span className='visually-hidden'>Loading...</span>
-			</div>
-		);
+		return <Loader />;
 	}
 
 	const fileChange = (e) => {

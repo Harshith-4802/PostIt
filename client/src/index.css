@@ -14,8 +14,8 @@
   }
 
   .draw-border {
-    box-shadow: inset 0 0 0 4px #58cdd1;
-    color: #58afd1;
+    box-shadow: inset 0 0 0 4px #524A4E;
+    color: #524A4E;
     -webkit-transition: color 0.25s 0.0833333333s;
     transition: color 0.25s 0.0833333333s;
     position: relative;
@@ -45,12 +45,12 @@
   }
 
   .draw-border:hover {
-    color: #ffe593;
+    color: #FFC0D3;
   }
   
   .draw-border:hover::before,
   .draw-border:hover::after {
-    border-color: #eb196e;
+    border-color: #FF5C8D;
     -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
     transition: border-color 0s, width 0.25s, height 0.25s;
     width: 100%;
@@ -68,7 +68,7 @@
   }
 
   .followed{
-    color: #ffe593;
+    color: #FFC0D3;
     border-color: #eb196e;
     -webkit-transition: border-color 0s, width 0.25s, height 0.25s;
     transition: border-color 0s, width 0.25s, height 0.25s;

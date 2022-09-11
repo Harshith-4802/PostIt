@@ -1,12 +1,16 @@
-## Deployed Application Link -
+# Deployed Application Link -
 
-[https://post-it-4802.herokuapp.com/](https://post-it-4802.herokuapp.com/)
+## [https://post-it-4802.herokuapp.com/](https://post-it-4802.herokuapp.com/)
 
-## To run locally
+# To run locally
 
-In the project directory, you can run:
+## In the project directory, you can run:
+
+## For Starting the Backend :
 
 ### `node server.js`
+
+## For Staring Frontend :
 
 ### `cd client`
 

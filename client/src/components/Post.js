@@ -30,7 +30,7 @@ const Post = (props) => {
 
 	// const follow = async () => {
 	// 	const followButtons = document.getElementsByClassName(followId);
-	// 	if (followButtons[0].innerHTML === "Followed") {
+	// 	if (followButtons[0].innerHTML === "Unfollow") {
 	// 		unfollow();
 	// 		return;
 	// 	}
@@ -38,7 +38,7 @@ const Post = (props) => {
 	// 		friendUserName: props.user.username,
 	// 	});
 	// 	for (let b of followButtons) {
-	// 		b.innerHTML = "Followed";
+	// 		b.innerHTML = "Unfollow";
 	// 		b.classList.add("followed");
 	// 	}
 	// };
@@ -46,27 +46,29 @@ const Post = (props) => {
 	return (
 		<div className='shadow-lg p-3 mb-5 bg-body rounded card mx-auto mb-5'>
 			<div className='card-title row justify-content-center'>
-				<div className='col-2'>
+				<div className='col-2 col-sm-1 my-2 px-0 ml-3'>
 					<img
 						style={{ width: "3rem", height: "3rem", borderRadius: "50%" }}
 						src={props.user.profile_pic_url}
-						className='img-responsive m-1'
+						className='img-responsive mx-auto'
 						alt='dummydp'
 					/>
 				</div>
-				<div className='py-2 mb-2 display-6 col-6'>{props.user.username}</div>
+				<div className='my-2 mx-2 px-0 display-6 col-sm-6 col-4'>
+					{props.user.username}
+				</div>
 				{/* <button
 					onClick={follow}
 					data-bs-toggle='button'
 					className={`border-0 rounded-1 draw-border p-0 col-3 followed ${followId}`}
 				>
-					Followed
+					Unfollow
 				</button> */}
-				<div className='col-4'>
+				<div className='col-4 fs-5'>
 					<FollowButton
 						username={props.user.username}
 						followId={followId}
-						text='Followed'
+						text='Unfollow'
 					/>
 				</div>
 			</div>

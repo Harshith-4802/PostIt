@@ -78,9 +78,9 @@ const Login = () => {
 	};
 
 	return (
-		<div>
+		<div className='container'>
 			<h1 className='display-1 my-4 text-center'>Sign Up</h1>
-			<div className=' container center shadow p-4 mx-auto bg-body border rounded-4 row justify-content-evenly mt-2'>
+			<div className=' center shadow p-4 mx-auto bg-body border rounded-4 row justify-content-evenly mt-2'>
 				<form
 					method='post'
 					id='form'
@@ -141,18 +141,20 @@ const Login = () => {
 				</form>
 				<div className='mb-3 col-sm-3'>
 					<div className='col'>
-						<div className='row justify-items-evenly'>
-							<h3 className='display-6 text-center '>Profile Picture</h3>
+						<div className='row justify-content-center'>
+							<h3 className='display-6 text-center mt-3'>Profile Picture</h3>
 							<img
 								src={imageUrl}
-								className='img-responsive col-4 mt-2 mb-4'
+								className='img-responsive col-5 mt-2 mb-4'
 								alt='profile-pic'
 								style={{
 									borderRadius: "50%",
-									objectFit: "scale-down",
+									// objectFit: "scale-down",
 									objectPosition: "center",
-									width: "100%",
-									maxHeight: "200px",
+									// width: "100%",
+									// maxHeight: "200px",
+									width: "15rem",
+									height: "15rem",
 								}}
 							/>
 							<div id='imgfilediv'>
@@ -171,9 +173,9 @@ const Login = () => {
 				</div>
 			</div>
 			<div className='row mt-3'>
-				<div className='col-sm-6 mt-2 text-end'>Already Signed Up?</div>
+				<div className='col-6 mt-2 text-end'>Already Signed Up?</div>
 				<button
-					className='btn btn-primary col-sm-1 btn-block'
+					className='btn btn-primary col-md-1 col-3 btn-block'
 					onClick={() => history.push("/login")}
 				>
 					Login
