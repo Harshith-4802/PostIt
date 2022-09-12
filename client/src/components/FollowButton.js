@@ -34,6 +34,7 @@ const FollowButton = (props) => {
 			onClick={follow}
 			data-bs-toggle='button'
 			className={`border-0 fs-6 rounded-1 draw-border followed ${props.followId}`}
+			// className={`btn btn-outline-secondary rounded-1 ${props.followId}`}
 			style={{ backgroundColor: "FDEFF4", height: "100%", width: "100%" }}
 		>
 			{props.text}

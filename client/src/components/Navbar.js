@@ -34,6 +34,9 @@ const Navbar = () => {
 						<Link to='/home'>
 							<button className='btn fs-6'>Home</button>
 						</Link>
+						<Link to='/profile'>
+							<button className='btn fs-6'>Profile</button>
+						</Link>
 						<Link to='/add-post'>
 							<button className='btn fs-6'>Add new Post</button>
 						</Link>

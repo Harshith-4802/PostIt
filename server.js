@@ -205,6 +205,17 @@ app.post("/api/unfollow", async (req, res) => {
 	res.send("UnFollowed");
 });
 
+app.get("/api/profile", async (req, res) => {
+	const username = req.session.username;
+	if (!username) {
+		res.send({ loggedIn: false });
+		return;
+	}
+	const user = await UserModel.findOne({ username }).populate("posts");
+	console.log(user);
+	res.send({ user });
+});
+
 app.get("/api/users", async (req, res) => {
 	const username = req.session.username;
 	if (!username) {
