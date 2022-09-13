@@ -12,7 +12,7 @@ const Suggestions = () => {
 			return (
 				<div
 					key={user.username}
-					className='border rounded-3 mx-1 p-2 mb-1 row '
+					className='border rounded-3 mx-1 p-2 shadow-lg bg-body mb-1 row '
 				>
 					<div className='col-2'>
 						<img
