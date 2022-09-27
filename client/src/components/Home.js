@@ -31,15 +31,22 @@ const Home = () => {
 			setPosts(p);
 		} else {
 			const p = res.data.friends.map((friend) => {
-				return friend.posts.map((post) => (
-					<Post
-						key={post._id}
-						id={post._id}
-						user={friend}
-						desc={post.desc}
-						img_url={post.img_url}
-					/>
-				));
+				return friend.posts.map((post) => {
+					let liked = false;
+					if (post.likes.includes(user._id)) {
+						liked = true;
+					}
+					return (
+						<Post
+							key={post._id}
+							id={post._id}
+							user={friend}
+							desc={post.desc}
+							img_url={post.img_url}
+							liked={liked}
+						/>
+					);
+				});
 			});
 			setPosts(p);
 		}

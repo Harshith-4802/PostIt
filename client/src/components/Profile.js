@@ -30,8 +30,9 @@ const Profile = () => {
 			return (
 				<img
 					key={post._id}
-					className=' shadow-lg  bg-body img-fluid rounded-5 my-1 my-sm-3'
+					className=' shadow-lg mx-2 bg-body img-fluid rounded-5 my-1 my-sm-3'
 					src={post.img_url}
+					style={{ width: "100%" }}
 				></img>
 			);
 		});
@@ -71,7 +72,7 @@ const Profile = () => {
 					</div>
 				</div>
 
-				<div className='row mt-3'>
+				<div className='row mt-3 '>
 					<div className='col-6 p-1 p-sm-3'>
 						{posts.slice(0, posts.length / 2)}
 					</div>

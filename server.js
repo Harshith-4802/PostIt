@@ -177,11 +177,6 @@ app.post("/api/follow", async (req, res) => {
 		res.send("Same User Cannot follow");
 		return;
 	}
-	// const friendUser = await UserModel.findOne({ username: friendUsername });
-	// await UserModel.updateOne(
-	// 	{ username: myUsername },
-	// 	{ $addToSet: { friends: friendUser } }
-	// );
 	AfollowsB(myUsername, friendUsername);
 	res.send("Followed");
 });
@@ -203,6 +198,36 @@ app.post("/api/unfollow", async (req, res) => {
 		);
 	});
 	res.send("UnFollowed");
+});
+
+app.post("/api/like", async (req, res) => {
+	if (!req.session.username) {
+		res.send({ loggedIn: false });
+		return;
+	}
+	const postId = req.body.postId;
+	const myUsername = req.session.username;
+	const user = await UserModel.findOne({ username: myUsername });
+	await PostModel.updateOne({ _id: postId }, { $addToSet: { likes: user } });
+	res.send("Liked");
+});
+
+app.post("/api/dislike", async (req, res) => {
+	if (!req.session.username) {
+		res.send({ loggedIn: false });
+		return;
+	}
+	const postId = req.body.postId;
+	const myUsername = req.session.username;
+	const user = await UserModel.findOne({ username: myUsername });
+	PostModel.findOneAndUpdate(
+		{ _id: postId },
+		{ $pull: { likes: user._id } },
+		function (err, data) {
+			console.log(err, data);
+		}
+	);
+	res.send("Disliked");
 });
 
 app.get("/api/profile", async (req, res) => {

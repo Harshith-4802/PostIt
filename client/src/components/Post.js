@@ -2,19 +2,20 @@
 // import "../index.css";
 
 import FollowButton from "./FollowButton";
+import LikeButton from "./LikeButton";
 
 const Post = (props) => {
 	const img_url =
 		props.img_url ||
 		"https://res.cloudinary.com/harshith4802/image/upload/v1662654964/posts/yxi8vm6hhgnx8hkbwycu.png";
 	const id = props.id || 0;
-	const heartId = `heart-${id}`;
+	// const heartId = `heart-${id}`;
 	const followId = `follow-${props.user.username}`;
 
-	const playHeart = () => {
-		const heartDiv = document.getElementById(heartId);
-		heartDiv.classList.toggle("is-active");
-	};
+	// const playHeart = () => {
+	// 	const heartDiv = document.getElementById(heartId);
+	// 	heartDiv.classList.toggle("is-active");
+	// };
 
 	// const unfollow = async () => {
 	// 	const followButtons = document.getElementsByClassName(followId);
@@ -79,7 +80,8 @@ const Post = (props) => {
 			/>
 			<div className='text-top card-body py-0 row justify-content-between'>
 				<p className='card-text col-9 pt-3 px-0'>{props.desc}</p>
-				<div id={heartId} className='heart col-3' onClick={playHeart}></div>
+				{/* <div id={heartId} className='heart col-3' onClick={playHeart}></div> */}
+				<LikeButton postId={id} liked={props.liked} />
 			</div>
 		</div>
 	);
