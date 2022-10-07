@@ -34,6 +34,8 @@ The page will reload when you make changes.
 `/api/sign-up` -> Takes user info as input, creates a new User and stores in database (password is hashed and stored)\
 `/api/login` -> Takes username and password, check if they match with any user in the database\
 `/api/add-post` -> Takes post info (image and description) and stores in database mapped with logged in user\
-`/api/follow` -> Takes in a username as input and adds it to the freinds list of logged in user\
-`/api/unfollow` -> Takes in a username as input and removes it from the freinds list of logged in user (if exists)\
+`/api/follow` -> Takes in a username as input and adds it to the friends list of logged in user\
+`/api/unfollow` -> Takes in a username as input and removes it from the friends list of logged in user (if exists)\
+`/api/like` -> Takes in a postId as input and adds the loggedIn user to the likes list of post\
+`/api/dislike` -> Takes in a postId as input and removes the loggedIn user from the likes list of post (if exists)\
 `/api/logout` -> Logs out the current user
