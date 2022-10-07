@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import Loader from "./Loader";
 import "../index.css";
 import FollowButton from "./FollowButton";
@@ -9,23 +9,33 @@ import Navbar from "./Navbar";
 const Profile = () => {
 	const history = useHistory();
 	const [posts, setPosts] = useState(null);
-	const [user, setUser] = useState(null);
-
-	if (!user) {
+	const [myUser, setMyUser] = useState(null);
+	const [profileUser, setProfileUser] = useState(null);
+	var { id } = useParams();
+	if (!myUser) {
 		axios.get("/api/check-login").then((res) => {
-			console.log(res);
 			if (!res.data.loggedIn) {
 				history.push("/login");
 			} else {
-				setUser(res.data.user);
+				setMyUser(res.data.user);
 			}
 		});
 		return <Loader />;
 	}
 	const getPosts = async () => {
 		if (posts) return;
-		const res = await axios.get("/api/profile");
-		// console.log(res.data.user.posts);
+		if (!id) {
+			id = myUser.username;
+		}
+		const res = await axios.get("/api/profile", {
+			params: {
+				username: id,
+			},
+		});
+		if (!res.data.user) {
+			setPosts(-1);
+		}
+		setProfileUser(res.data.user);
 		const p = res.data.user.posts.map((post) => {
 			return (
 				<img
@@ -41,6 +51,33 @@ const Profile = () => {
 
 	getPosts();
 	if (!posts) return <Loader />;
+	if (posts === -1) {
+		return (
+			<div>
+				<Navbar />
+				<div className='display-2 text-center'>Invalid Username</div>;
+			</div>
+		);
+	}
+
+	const profilebtn =
+		myUser.username !== profileUser.username ? (
+			<FollowButton
+				username={profileUser.username}
+				followId={profileUser.username}
+				text={myUser.friends.includes(profileUser._id) ? "Unfollow" : "Follow"}
+			/>
+		) : (
+			<Link to='/edit-profile'>
+				<button
+					style={{ height: "100%", width: "100%" }}
+					className='btn btn-outline-dark fs-6'
+				>
+					Edit Profile
+				</button>
+			</Link>
+		);
+
 	return (
 		<div>
 			<Navbar />
@@ -49,23 +86,19 @@ const Profile = () => {
 					<div className='row justify-content-center g-0'>
 						<div className='col-md-3 col-10'>
 							<img
-								src={user.profile_pic_url}
+								src={profileUser.profile_pic_url}
 								className='img-fluid p-3'
-								style={{ borderRadius: "50%" }}
+								style={{ borderRadius: "50%", width: "100%", height: "100%" }}
 								alt='...'
 							/>
 						</div>
 						<div className='col-md-6'>
 							<div className='card-body pt-0'>
 								<h5 className='display-1 text-center my-sm-4'>
-									{user.username}
+									{profileUser.username}
 								</h5>
 								<div className='mx-auto' style={{ height: "3rem" }}>
-									<FollowButton
-										username={user.username}
-										followId={user.username}
-										text='Unfollow'
-									/>
+									{profilebtn}
 								</div>
 							</div>
 						</div>

@@ -6,7 +6,7 @@ const isFileImage = (file) => {
 	return file && file["type"].split("/")[0] === "image";
 };
 
-const Login = () => {
+const SignUp = () => {
 	const defaultImgUrl =
 		"https://res.cloudinary.com/harshith4802/image/upload/v1662654964/posts/yxi8vm6hhgnx8hkbwycu.png";
 	const [fullname, setFullname] = useState("");
@@ -132,12 +132,14 @@ const Login = () => {
 						/>
 						<label htmlFor='floatingPassword'>Password</label>
 					</div>
-					<button
-						type='submit'
-						className='btn btn-primary mr-5 btn-block btn-lg mt-3'
-					>
-						Sign Up
-					</button>
+					<div className='text-center'>
+						<button
+							type='submit'
+							className='btn btn-primary mr-5 btn-block btn-lg mt-3'
+						>
+							Sign Up
+						</button>
+					</div>
 				</form>
 				<div className='mb-3 col-sm-3'>
 					<div className='col'>
@@ -185,4 +187,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default SignUp;

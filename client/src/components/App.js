@@ -5,6 +5,7 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import Home from "./Home";
 import Profile from "./Profile";
+import EditProfile from "./EditProfile";
 
 export default () => {
 	return (
@@ -16,7 +17,9 @@ export default () => {
 					<Route path='/sign-up' component={() => <SignUp />} />
 					<Route path='/login' component={() => <Login />} />
 					<Route path='/add-post' component={() => <AddPost />} />
-					<Route path='/profile' component={() => <Profile />} />
+					<Route path='/edit-profile' component={() => <EditProfile />} />
+					<Route path='/profile/:id' component={() => <Profile />} />
+					<Route exact path='/profile' component={() => <Profile />} />
 				</div>
 			</BrowserRouter>
 		</div>

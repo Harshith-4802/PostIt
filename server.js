@@ -85,6 +85,33 @@ app.post("/api/sign-up", upload.single("image"), async (req, res) => {
 	res.send({ duplicateUsername: false });
 });
 
+app.post("/api/edit-profile", upload.single("image"), async (req, res) => {
+	if (!req.session.username) {
+		res.send({ loggedIn: false });
+		return;
+	}
+	const { fullname, username, password } = req.body;
+	const user = await UserModel.findOne({ username });
+	if (user != null && req.session.username !== username) {
+		res.send({ duplicateUsername: true });
+		return;
+	}
+	let profile_pic_url;
+	if (!req.file) {
+		profile_pic_url =
+			"https://res.cloudinary.com/harshith4802/image/upload/v1662654964/posts/yxi8vm6hhgnx8hkbwycu.png";
+	} else {
+		profile_pic_url = req.file.path;
+	}
+	const hash = await bcrypt.hash(password, 12);
+	user.fullname = fullname;
+	user.username = username;
+	user.password = hash;
+	user.profile_pic_url = profile_pic_url;
+	await user.save();
+	res.send({ duplicateUsername: false });
+});
+
 app.post("/api/login", async (req, res) => {
 	const { username, password } = req.body;
 	const user = await UserModel.findOne({ username });
@@ -103,7 +130,6 @@ app.post("/api/login", async (req, res) => {
 
 const PostModel = require("./models/Post");
 app.post("/api/add-post", upload.single("image"), async (req, res) => {
-	console.log(req.body, req.file.path);
 	if (!req.session.username) {
 		res.send({ loggedIn: false });
 		return;
@@ -126,7 +152,6 @@ app.get("/api/check-login", async (req, res) => {
 		res.send({ loggedIn: false });
 	} else {
 		const user = await UserModel.findOne({ username: req.session.username });
-		console.log(user);
 		res.send({ loggedIn: true, user });
 	}
 });
@@ -236,8 +261,9 @@ app.get("/api/profile", async (req, res) => {
 		res.send({ loggedIn: false });
 		return;
 	}
-	const user = await UserModel.findOne({ username }).populate("posts");
-	console.log(user);
+	const user = await UserModel.findOne({
+		username: req.query.username,
+	}).populate("posts");
 	res.send({ user });
 });
 
@@ -255,7 +281,6 @@ app.get("/api/users", async (req, res) => {
 			notFriends.push(user);
 		}
 	});
-
 	res.send(notFriends);
 });
 

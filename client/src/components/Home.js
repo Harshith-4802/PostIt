@@ -13,7 +13,6 @@ const Home = () => {
 
 	if (!user) {
 		axios.get("/api/check-login").then((res) => {
-			console.log(res);
 			if (!res.data.loggedIn) {
 				history.push("/login");
 			} else {
@@ -25,7 +24,6 @@ const Home = () => {
 	const getPosts = async () => {
 		if (posts) return;
 		const res = await axios.get("/api/home");
-		console.log(res.data.friends);
 		if (!res.data.friends || res.data.friends.length === 0) {
 			const p = <div className='display-3'>No Posts Yet</div>;
 			setPosts(p);
@@ -44,6 +42,7 @@ const Home = () => {
 							desc={post.desc}
 							img_url={post.img_url}
 							liked={liked}
+							numLikes={post.likes.length}
 						/>
 					);
 				});

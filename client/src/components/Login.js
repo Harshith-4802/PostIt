@@ -21,7 +21,6 @@ const Login = () => {
 					password,
 				})
 				.then((res) => {
-					console.log(res.data);
 					if (res.data.isValidUser) {
 						history.push("/home");
 					} else {
@@ -82,13 +81,14 @@ const Login = () => {
 							<label htmlFor='floatingPassword'>Password</label>
 							<div className='invalid-feedback'>Please Enter a Password.</div>
 						</div>
-
-						<button
-							type='submit'
-							className='btn btn-primary mr-5 btn-block mt-3'
-						>
-							Sign in
-						</button>
+						<div className='text-center'>
+							<button
+								type='submit'
+								className='btn btn-primary mr-5 btn-block mt-3'
+							>
+								Sign in
+							</button>
+						</div>
 					</form>
 				</div>
 				<div className='container row mt-3 justify-content-center'>

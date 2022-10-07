@@ -41,7 +41,7 @@ const Navbar = () => {
 							<button className='btn fs-6'>Add new Post</button>
 						</Link>
 						<button
-							className='btn btn-outline-dark fs-6'
+							className='ms-2 btn btn-outline-dark fs-6'
 							onClick={removeUserId}
 						>
 							Logout

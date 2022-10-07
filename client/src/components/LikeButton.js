@@ -28,7 +28,29 @@ const LikeButton = (props) => {
 		setLiked(true);
 	};
 
-	return <div id={heartId} className='heart col-3' onClick={like}></div>;
+	return (
+		<div
+			id={heartId}
+			className='heart col-3'
+			style={{
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "flex-end",
+				fontSize: "small",
+				fontFamily: "Varela Round",
+				fontWeight: "bold",
+			}}
+			onClick={like}
+		>
+			<div className='text-center'>
+				{liked === props.liked
+					? props.numLikes
+					: liked
+					? props.numLikes + 1
+					: props.numLikes - 1}
+			</div>
+		</div>
+	);
 };
 
 export default LikeButton;

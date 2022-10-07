@@ -1,6 +1,4 @@
-// import axios from "axios";
-// import "../index.css";
-
+import { useHistory } from "react-router-dom";
 import FollowButton from "./FollowButton";
 import LikeButton from "./LikeButton";
 
@@ -11,6 +9,10 @@ const Post = (props) => {
 	const id = props.id || 0;
 	// const heartId = `heart-${id}`;
 	const followId = `follow-${props.user.username}`;
+	const history = useHistory();
+	const profileClick = () => {
+		history.push(`/profile/${props.user.username}`);
+	};
 
 	// const playHeart = () => {
 	// 	const heartDiv = document.getElementById(heartId);
@@ -49,13 +51,23 @@ const Post = (props) => {
 			<div className='card-title row justify-content-center'>
 				<div className='col-2 col-sm-1 my-2 px-0 ml-3'>
 					<img
-						style={{ width: "3rem", height: "3rem", borderRadius: "50%" }}
+						style={{
+							width: "3rem",
+							height: "3rem",
+							borderRadius: "50%",
+							cursor: "pointer",
+						}}
 						src={props.user.profile_pic_url}
-						className='img-responsive mx-auto'
+						className='img-responsive mx-auto pe-auto'
 						alt='dummydp'
+						onClick={profileClick}
 					/>
 				</div>
-				<div className='my-2 mx-2 px-0 display-6 col-sm-6 col-4'>
+				<div
+					onClick={profileClick}
+					style={{ cursor: "pointer" }}
+					className='my-2 mx-2 px-0 display-6 col-sm-6 col-4 pe-auto'
+				>
 					{props.user.username}
 				</div>
 				{/* <button
@@ -81,7 +93,7 @@ const Post = (props) => {
 			<div className='text-top card-body py-0 row justify-content-between'>
 				<p className='card-text col-9 pt-3 px-0'>{props.desc}</p>
 				{/* <div id={heartId} className='heart col-3' onClick={playHeart}></div> */}
-				<LikeButton postId={id} liked={props.liked} />
+				<LikeButton postId={id} liked={props.liked} numLikes={props.numLikes} />
 			</div>
 		</div>
 	);

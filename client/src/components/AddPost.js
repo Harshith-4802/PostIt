@@ -114,7 +114,13 @@ const AddPost = () => {
 				</form>
 				<div className='col-md-6'>
 					<h3 className='display-6 text-center'>Preview</h3>
-					<Post user={user} desc={desc} img_url={imageUrl} />
+					<Post
+						user={user}
+						desc={desc}
+						img_url={imageUrl}
+						liked={false}
+						numLikes={0}
+					/>
 				</div>
 			</div>
 		</div>

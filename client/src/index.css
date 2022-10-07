@@ -4,11 +4,13 @@
     background: url("https://res.cloudinary.com/harshith4802/image/upload/v1662759206/heart_h0dvyn.png") no-repeat;
     background-position: 0 0;
     cursor: pointer;
+    color : #c3c9d4;
     transition: background-position 1s steps(28);
     transition-duration: 0s;
 }
 
 .heart.is-active {
+    color: #FF5C8D;
     transition-duration: 1s;
     background-position: -1400px 0;
   }
