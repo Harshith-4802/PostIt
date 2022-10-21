@@ -39,7 +39,7 @@ const FollowButton = (props) => {
 				backgroundColor: "FDEFF4",
 				height: "100%",
 				width: "100%",
-				fontFamily: "cursive",
+				fontFamily: "Comic Sans MS",
 			}}
 		>
 			{props.text}
