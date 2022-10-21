@@ -150,6 +150,7 @@ app.post("/api/add-post", upload.single("image"), async (req, res) => {
 		desc: req.body.desc,
 		img_url: post_pic_url,
 		img_name: req.file.filename,
+		date: new Date().toISOString(),
 	});
 	await newPost.save();
 	user.posts.push(newPost);

@@ -69,6 +69,11 @@ const SignUp = () => {
 					const alert = document.getElementById("alert");
 					alert.classList.remove("d-none");
 				} else {
+					document.getElementById("submitButton").disabled = true;
+					document.getElementById("loader").classList.remove("visually-hidden");
+					document
+						.getElementById("buttonText")
+						.classList.add("visually-hidden");
 					history.push("/home");
 				}
 			});
@@ -105,6 +110,7 @@ const SignUp = () => {
 							name='fullname'
 							onChange={(e) => setFullname(e.target.value)}
 							required
+							maxLength='10'
 						/>
 						<label htmlFor='floatingInput'>Full Name</label>
 					</div>
@@ -117,6 +123,7 @@ const SignUp = () => {
 							name='username'
 							onChange={(e) => setUsername(e.target.value)}
 							required
+							maxLength='10'
 						/>
 						<label htmlFor='floatingInput'>Username</label>
 					</div>
@@ -129,15 +136,23 @@ const SignUp = () => {
 							name='password'
 							onChange={(e) => setPassword(e.target.value)}
 							required
+							maxLength='40'
 						/>
 						<label htmlFor='floatingPassword'>Password</label>
 					</div>
 					<div className='text-center'>
 						<button
+							id='submitButton'
 							type='submit'
 							className='btn btn-primary mr-5 btn-block btn-lg mt-3'
 						>
-							Sign Up
+							<span
+								id='loader'
+								className='spinner-border spinner-border-sm visually-hidden'
+								role='status'
+								aria-hidden='true'
+							></span>
+							<span id='buttonText'>Sign Up</span>
 						</button>
 					</div>
 				</form>

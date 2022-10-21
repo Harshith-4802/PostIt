@@ -32,15 +32,17 @@ const Home = () => {
 			);
 			setPosts(p);
 		} else {
-			const p = res.data.friends.map((friend) => {
-				return friend.posts.map((post) => {
+			const p = [];
+			res.data.friends.forEach((friend) => {
+				friend.posts.forEach((post) => {
 					let liked = false;
 					if (post.likes.includes(user._id)) {
 						liked = true;
 					}
-					return (
+					p.push(
 						<Post
 							key={post._id}
+							date={post.date}
 							id={post._id}
 							user={friend}
 							desc={post.desc}
@@ -51,6 +53,9 @@ const Home = () => {
 					);
 				});
 			});
+			p.sort((a, b) =>
+				a.props.date < b.props.date ? 1 : b.props.date < a.props.date ? -1 : 0
+			);
 			setPosts(p);
 		}
 	};

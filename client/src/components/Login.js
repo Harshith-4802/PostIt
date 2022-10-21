@@ -22,6 +22,13 @@ const Login = () => {
 				})
 				.then((res) => {
 					if (res.data.isValidUser) {
+						document.getElementById("submitButton").disabled = true;
+						document
+							.getElementById("loader")
+							.classList.remove("visually-hidden");
+						document
+							.getElementById("buttonText")
+							.classList.add("visually-hidden");
 						history.push("/home");
 					} else {
 						document.getElementById("username").value = "";
@@ -63,6 +70,7 @@ const Login = () => {
 								placeholder='Username'
 								name='username'
 								aria-describedby='inputGroupPrepend'
+								maxLength='10'
 								onChange={(e) => setUsername(e.target.value)}
 							/>
 							<label htmlFor='floatingInput'>Username</label>
@@ -77,16 +85,24 @@ const Login = () => {
 								placeholder='Password'
 								name='password'
 								onChange={(e) => setPassword(e.target.value)}
+								maxLength='40'
 							/>
 							<label htmlFor='floatingPassword'>Password</label>
 							<div className='invalid-feedback'>Please Enter a Password.</div>
 						</div>
 						<div className='text-center'>
 							<button
+								id='submitButton'
 								type='submit'
 								className='btn btn-primary mr-5 btn-block mt-3'
 							>
-								Sign in
+								<span
+									id='loader'
+									className='spinner-border spinner-border-sm visually-hidden'
+									role='status'
+									aria-hidden='true'
+								></span>
+								<span id='buttonText'>Sign in</span>
 							</button>
 						</div>
 					</form>

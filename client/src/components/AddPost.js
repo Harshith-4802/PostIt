@@ -58,7 +58,12 @@ const AddPost = () => {
 				})
 				.then((res) => {
 					console.log(res);
-					history.push("/home");
+					document.getElementById("submitButton").disabled = true;
+					document.getElementById("loader").classList.remove("visually-hidden");
+					document
+						.getElementById("buttonText")
+						.classList.add("visually-hidden");
+					history.push("/profile");
 				});
 		} catch (err) {
 			console.log(err);
@@ -106,9 +111,16 @@ const AddPost = () => {
 					<div className='d-grid gap-2 d-md-flex justify-content-center'>
 						<button
 							type='submit'
+							id='submitButton'
 							className='btn col btn-primary btn-lg align-center mt-3'
 						>
-							Post
+							<span
+								id='loader'
+								className='spinner-border spinner-border-sm visually-hidden'
+								role='status'
+								aria-hidden='true'
+							></span>
+							<span id='buttonText'>Post</span>
 						</button>
 					</div>
 				</form>

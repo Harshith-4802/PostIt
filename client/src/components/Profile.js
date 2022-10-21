@@ -36,6 +36,9 @@ const Profile = () => {
 			setPosts(-1);
 		}
 		setProfileUser(res.data.user);
+		res.data.user.posts.sort((a, b) =>
+			a.date < b.date ? 1 : b.date < a.date ? -1 : 0
+		);
 		const p = res.data.user.posts.map((post) => {
 			return (
 				<img
@@ -109,12 +112,12 @@ const Profile = () => {
 					</div>
 				</div>
 
-				<div className='row mt-3 '>
+				<div className='row container mx-0 px-0 mt-3 '>
 					<div className='col-6 p-1 p-sm-3'>
-						{posts.slice(0, posts.length / 2)}
+						{posts.length > 1 ? posts.slice(0, posts.length / 2) : posts}
 					</div>
 					<div className='col-6 p-1 p-sm-3'>
-						{posts.slice(posts.length / 2)}
+						{posts.length > 1 ? posts.slice(posts.length / 2) : []}
 					</div>
 				</div>
 			</div>

@@ -94,6 +94,11 @@ const EditProfile = (props) => {
 					const alert = document.getElementById("alert");
 					alert.classList.remove("d-none");
 				} else {
+					document.getElementById("submitButton").disabled = true;
+					document.getElementById("loader").classList.remove("visually-hidden");
+					document
+						.getElementById("buttonText")
+						.classList.add("visually-hidden");
 					history.push("/profile");
 				}
 			});
@@ -132,6 +137,7 @@ const EditProfile = (props) => {
 								value={fullname}
 								onChange={(e) => setFullname(e.target.value)}
 								required
+								maxLength='10'
 							/>
 							<label htmlFor='floatingInput'>Full Name</label>
 						</div>
@@ -145,6 +151,7 @@ const EditProfile = (props) => {
 								value={username}
 								onChange={(e) => setUsername(e.target.value)}
 								required
+								maxLength='10'
 							/>
 							<label htmlFor='floatingInput'>Username</label>
 						</div>
@@ -157,15 +164,23 @@ const EditProfile = (props) => {
 								name='password'
 								onChange={(e) => setPassword(e.target.value)}
 								required
+								maxLength='40'
 							/>
 							<label htmlFor='floatingPassword'>Password</label>
 						</div>
 						<div className='text-center'>
 							<button
+								id='submitButton'
 								type='submit'
 								className='btn btn-primary btn-block btn-lg mt-3'
 							>
-								Edit Profile
+								<span
+									id='loader'
+									className='spinner-border spinner-border-sm visually-hidden'
+									role='status'
+									aria-hidden='true'
+								></span>
+								<span id='buttonText'>Edit Profile</span>
 							</button>
 						</div>
 					</form>
