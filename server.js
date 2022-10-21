@@ -138,10 +138,17 @@ app.post("/api/add-post", upload.single("image"), async (req, res) => {
 		return;
 	}
 	const user = await UserModel.findOne({ username: req.session.username });
+	let post_pic_url;
+	if (!req.file || !req.file.path) {
+		post_pic_url =
+			"https://res.cloudinary.com/harshith4802/image/upload/v1662654964/posts/yxi8vm6hhgnx8hkbwycu.png";
+	} else {
+		post_pic_url = req.file.path;
+	}
 	const newPost = new PostModel({
 		user,
 		desc: req.body.desc,
-		img_url: req.file.path,
+		img_url: post_pic_url,
 		img_name: req.file.filename,
 	});
 	await newPost.save();
