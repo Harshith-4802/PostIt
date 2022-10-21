@@ -65,8 +65,10 @@ const Post = (props) => {
 				</div>
 				<div
 					onClick={profileClick}
-					style={{ cursor: "pointer" }}
-					className='my-2 mx-2 px-0 display-6 col-sm-6 col-4 pe-auto'
+					style={{
+						cursor: "pointer",
+					}}
+					className='my-2 mx-2 px-1 display-6 col-sm-6 col-5 pe-auto'
 				>
 					{props.user.username}
 				</div>
@@ -77,7 +79,7 @@ const Post = (props) => {
 				>
 					Unfollow
 				</button> */}
-				<div className='col-sm-4 py-1 col-5 fs-5'>
+				<div className='col-sm-4 py-1 ps-0 col-4 fs-6'>
 					<FollowButton
 						username={props.user.username}
 						followId={followId}
@@ -93,7 +95,12 @@ const Post = (props) => {
 			<div className='text-top card-body py-0 row justify-content-between'>
 				<p className='card-text col-9 pt-3 px-0'>{props.desc}</p>
 				{/* <div id={heartId} className='heart col-3' onClick={playHeart}></div> */}
-				<LikeButton postId={id} liked={props.liked} numLikes={props.numLikes} />
+				<LikeButton
+					postId={id}
+					liked={props.liked}
+					numLikes={props.numLikes}
+					likeDisable={props.likeDisable}
+				/>
 			</div>
 		</div>
 	);

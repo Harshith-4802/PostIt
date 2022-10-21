@@ -218,7 +218,7 @@ app.post("/api/unfollow", async (req, res) => {
 			{ username: myUsername },
 			{ $pull: { friends: res._id } },
 			function (err, data) {
-				console.log(err, data);
+				// console.log(err, data);
 			}
 		);
 	});
@@ -249,7 +249,7 @@ app.post("/api/dislike", async (req, res) => {
 		{ _id: postId },
 		{ $pull: { likes: user._id } },
 		function (err, data) {
-			console.log(err, data);
+			// console.log(err, data);
 		}
 	);
 	res.send("Disliked");

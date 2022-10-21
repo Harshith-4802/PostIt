@@ -13,7 +13,7 @@ const Suggestions = () => {
 	const getUsers = async () => {
 		if (users) return;
 		const res = await axios.get("/api/users");
-		const u = res.data.map((user) => {
+		const u = res.data.slice(0, 10).map((user) => {
 			return (
 				<div
 					key={user.username}
@@ -44,7 +44,7 @@ const Suggestions = () => {
 					>
 						{user.username}
 					</div>
-					<div className='col-4 '>
+					<div className='col-4 p-0'>
 						<FollowButton
 							username={user.username}
 							followId={user.username}
@@ -54,7 +54,15 @@ const Suggestions = () => {
 				</div>
 			);
 		});
-		setUsers(u);
+		if (u.length === 0) {
+			setUsers(
+				<div className='fs-3 text-center'>
+					No More Suggestions, You follow everyone!
+				</div>
+			);
+		} else {
+			setUsers(u);
+		}
 	};
 	getUsers();
 	return <div>{users}</div>;

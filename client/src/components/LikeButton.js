@@ -15,7 +15,9 @@ const LikeButton = (props) => {
 	};
 	useEffect(playHeart, [liked]);
 	const dislike = async () => {
-		axios.post("/api/dislike", { postId: props.postId });
+		if (!props.likeDisable) {
+			axios.post("/api/dislike", { postId: props.postId });
+		}
 		setLiked(false);
 	};
 
@@ -24,7 +26,9 @@ const LikeButton = (props) => {
 			dislike();
 			return;
 		}
-		axios.post("/api/like", { postId: props.postId });
+		if (!props.likeDisable) {
+			axios.post("/api/like", { postId: props.postId });
+		}
 		setLiked(true);
 	};
 
