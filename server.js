@@ -98,18 +98,18 @@ app.post("/api/edit-profile", upload.single("image"), async (req, res) => {
 		return;
 	}
 	const user = await UserModel.findOne({ username: req.session.username });
-	let profile_pic_url;
-	if (!req.file) {
-		profile_pic_url =
-			"https://res.cloudinary.com/harshith4802/image/upload/v1662654964/posts/yxi8vm6hhgnx8hkbwycu.png";
-	} else {
-		profile_pic_url = req.file.path;
-	}
+	// let profile_pic_url;
+	// if (!req.file) {
+	// 	profile_pic_url =
+	// 		"https://res.cloudinary.com/harshith4802/image/upload/v1662654964/posts/yxi8vm6hhgnx8hkbwycu.png";
+	// } else {
+	// 	profile_pic_url = req.file.path;
+	// }
 	const hash = await bcrypt.hash(password, 12);
 	user.fullname = fullname;
 	user.username = username;
 	user.password = hash;
-	user.profile_pic_url = profile_pic_url;
+	if (req.file) user.profile_pic_url = req.file.path;
 	await user.save();
 	req.session.username = username;
 	res.send({ duplicateUsername: false });
