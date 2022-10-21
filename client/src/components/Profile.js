@@ -84,17 +84,21 @@ const Profile = () => {
 			<div className='container mt-4'>
 				<div className='mx-auto col-sm-8 col-10 shadow-lg  bg-body rounded-5 card'>
 					<div className='row justify-content-center g-0'>
-						<div className='col-md-3 col-10'>
+						<div className='col-md-3 col-10 '>
 							<img
 								src={profileUser.profile_pic_url}
 								className='img-fluid p-3'
-								style={{ borderRadius: "50%", width: "100%", height: "100%" }}
+								style={{
+									borderRadius: "50%",
+									width: "15rem",
+									height: "15rem",
+								}}
 								alt='...'
 							/>
 						</div>
 						<div className='col-md-6'>
 							<div className='card-body pt-0'>
-								<h5 className='display-1 text-center my-sm-4'>
+								<h5 className='display-3 text-center my-sm-4'>
 									{profileUser.username}
 								</h5>
 								<div className='mx-auto' style={{ height: "3rem" }}>

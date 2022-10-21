@@ -60,6 +60,7 @@ const UserModel = require("./models/User");
 
 app.post("/api/sign-up", upload.single("image"), async (req, res) => {
 	const { fullname, username, password } = req.body;
+	username.replace(/ /g, "");
 	const user = await UserModel.findOne({ username });
 	if (user != null) {
 		// cloudinary.uploader.destroy()
@@ -91,11 +92,12 @@ app.post("/api/edit-profile", upload.single("image"), async (req, res) => {
 		return;
 	}
 	const { fullname, username, password } = req.body;
-	const user = await UserModel.findOne({ username });
-	if (user != null && req.session.username !== username) {
+	const checkUser = await UserModel.findOne({ username });
+	if (checkUser != null && req.session.username !== username) {
 		res.send({ duplicateUsername: true });
 		return;
 	}
+	const user = await UserModel.findOne({ username: req.session.username });
 	let profile_pic_url;
 	if (!req.file) {
 		profile_pic_url =
@@ -109,6 +111,7 @@ app.post("/api/edit-profile", upload.single("image"), async (req, res) => {
 	user.password = hash;
 	user.profile_pic_url = profile_pic_url;
 	await user.save();
+	req.session.username = username;
 	res.send({ duplicateUsername: false });
 });
 

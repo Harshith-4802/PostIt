@@ -75,6 +75,7 @@ const EditProfile = (props) => {
 			e.stopPropagation();
 			return;
 		}
+		console.log(fullname, username, password);
 		const formData = new FormData();
 		const imagefile = document.getElementById("formFile");
 		formData.append("fullname", fullname);
