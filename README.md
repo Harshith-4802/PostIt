@@ -6,6 +6,10 @@
 
 https://user-images.githubusercontent.com/111749559/199515315-d50ea082-2349-4632-aac6-9036f3d526c2.mp4
 
+## App is made responsive, works on mobile device also - 
+
+https://user-images.githubusercontent.com/111749559/199595005-42bbcac6-e70a-4aac-90b1-5fba1af1320d.mp4
+
 ## To run locally
 
 In the project directory, you can run:
