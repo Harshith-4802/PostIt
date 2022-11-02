@@ -47,7 +47,7 @@ const Post = (props) => {
 	// };
 
 	return (
-		<div className='shadow-lg p-3 mb-5 bg-body rounded card mx-auto mb-5'>
+		<div className='shadow-lg p-3 bg-body rounded card mx-auto'>
 			<div className='card-title row justify-content-center'>
 				<div className='col-2 col-sm-1 my-2 px-0 ml-3'>
 					<img

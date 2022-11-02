@@ -1,7 +1,7 @@
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
 	const history = useHistory();
 	const removeUserId = async () => {
 		await axios.post("/api/logout");
@@ -34,7 +34,7 @@ const Navbar = () => {
 						<Link to='/home'>
 							<button className='btn fs-6'>Home</button>
 						</Link>
-						<Link to='/profile'>
+						<Link to={`/profile`}>
 							<button className='btn fs-6'>Profile</button>
 						</Link>
 						<Link to='/add-post'>

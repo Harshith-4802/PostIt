@@ -5,6 +5,7 @@ import Loader from "./Loader";
 import "../index.css";
 import FollowButton from "./FollowButton";
 import Navbar from "./Navbar";
+import Post from "./Post";
 
 const Profile = () => {
 	const history = useHistory();
@@ -26,6 +27,7 @@ const Profile = () => {
 		if (posts) return;
 		if (!id) {
 			id = myUser.username;
+			history.push(`/profile/${myUser.username}`);
 		}
 		const res = await axios.get("/api/profile", {
 			params: {
@@ -40,13 +42,52 @@ const Profile = () => {
 			a.date < b.date ? 1 : b.date < a.date ? -1 : 0
 		);
 		const p = res.data.user.posts.map((post) => {
+			let liked = false;
+			if (post.likes.includes(myUser._id)) {
+				liked = true;
+			}
 			return (
-				<img
-					key={post._id}
-					className=' shadow-lg mx-2 bg-body img-fluid rounded-5 my-1 my-sm-3'
-					src={post.img_url}
-					style={{ width: "100%" }}
-				></img>
+				<div key={post._id}>
+					<img
+						className=' shadow-lg mx-2 bg-body img-fluid rounded-5 my-1 my-sm-3'
+						src={post.img_url}
+						style={{ cursor: "pointer", width: "100%" }}
+						data-bs-toggle='modal'
+						data-bs-target={`#postModal-${post._id}`}
+					></img>
+					<div
+						className='modal fade'
+						id={`postModal-${post._id}`}
+						tabIndex='-1'
+						aria-labelledby='postModalLabel'
+						aria-hidden='true'
+					>
+						<div className='modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable'>
+							<div className='modal-content'>
+								<div className='modal-header justify-content-end p-0'>
+									<button
+										type='button'
+										className='btn-close m-1 float-end'
+										aria-label='Close'
+										data-bs-target={`#postModal-${post._id}`}
+										data-bs-toggle='modal'
+									></button>
+								</div>
+								<div className='modal-body p-0'>
+									<Post
+										date={post.date}
+										id={post._id}
+										user={res.data.user}
+										desc={post.desc}
+										img_url={post.img_url}
+										liked={liked}
+										numLikes={post.likes.length}
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			);
 		});
 		setPosts(p);
@@ -83,7 +124,7 @@ const Profile = () => {
 
 	return (
 		<div>
-			<Navbar />
+			<Navbar user={myUser} />
 			<div className='container mt-4'>
 				<div className='mx-auto col-sm-8 col-10 shadow-lg  bg-body rounded-5 card'>
 					<div className='row justify-content-center g-0'>

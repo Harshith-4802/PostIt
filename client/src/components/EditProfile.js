@@ -109,7 +109,7 @@ const EditProfile = (props) => {
 
 	return (
 		<div>
-			<Navbar />
+			<Navbar user={myUser} />
 			<div className='container'>
 				<h1 className='display-1 my-1 text-center'>Edit Profile</h1>
 				<div className=' center shadow p-4 mx-auto bg-body border rounded-4 row justify-content-evenly mt-2'>

@@ -40,16 +40,16 @@ const Home = () => {
 						liked = true;
 					}
 					p.push(
-						<Post
-							key={post._id}
-							date={post.date}
-							id={post._id}
-							user={friend}
-							desc={post.desc}
-							img_url={post.img_url}
-							liked={liked}
-							numLikes={post.likes.length}
-						/>
+						<div key={post._id} date={post.date} className='mb-5'>
+							<Post
+								id={post._id}
+								user={friend}
+								desc={post.desc}
+								img_url={post.img_url}
+								liked={liked}
+								numLikes={post.likes.length}
+							/>
+						</div>
 					);
 				});
 			});
@@ -62,7 +62,7 @@ const Home = () => {
 	getPosts();
 	return (
 		<div>
-			<Navbar />
+			<Navbar user={user} />
 			<div className='row justify-content-center m-0 p-0'>
 				<div className='col-md-7 mt-4'>{posts}</div>
 				<div className='container col-md-4 my-3 mx-2 px-2'>

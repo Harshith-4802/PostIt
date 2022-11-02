@@ -24,7 +24,6 @@ const AddPost = () => {
 	}, [selectedImg]);
 	if (!user) {
 		axios.get("/api/check-login").then((res) => {
-			console.log(res);
 			if (!res.data.loggedIn) {
 				history.push("/login");
 			} else {
@@ -72,7 +71,7 @@ const AddPost = () => {
 
 	return (
 		<div>
-			<Navbar />
+			<Navbar user={user} />
 			<div className='container mx-auto row justify-content-evenly'>
 				<form
 					encType='multipart/form-data'
